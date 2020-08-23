@@ -2,7 +2,11 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 
-const app = express();
+//routes
+const users = require("./routes/api/users");
+const profile = require("./routes/api/profile");
+const posts = require("./routes/api/posts");
+const auth = require("./routes/api/auth");
 
 //Load environment variable
 dotenv.config({ path: "./config/config.env" });
@@ -10,9 +14,12 @@ dotenv.config({ path: "./config/config.env" });
 //connect database
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send("API is working");
-});
+const app = express();
+
+app.use("/api/users", users);
+app.use("/api/profile", profile);
+app.use("/api/posts", posts);
+app.use("/api/auth", auth);
 
 const PORT = process.env.PORT || 5000;
 
