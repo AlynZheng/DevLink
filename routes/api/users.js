@@ -2,21 +2,18 @@
 const express = require("express");
 
 const {
-  getBootcamps,
-  getBootcamp,
-  createBootcamp,
-  updateBootcamp,
-  deleteBootcamp,
-} = require("../controllers/bootcamps");
+  getAllUsers,
+  getUser,
+  registerUser,
+  updateUser,
+  deleteUser,
+} = require("../../controllers/users");
+//need to go up two folders api & routes, so ../../
 
 const router = express.Router();
 
-router.route("/").get(getBootcamps).post(createBootcamp);
+router.route("/").get(getAllUsers).post(registerUser);
 
-router
-  .route("/:id")
-  .get(getBootcamp)
-  .put(updateBootcamp)
-  .delete(deleteBootcamp);
+router.route("/:id").get(getUser).put(updateUser).delete(deleteUser);
 
 module.exports = router;
